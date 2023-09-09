@@ -11,10 +11,18 @@ namespace csharp_scrabble_challenge.Main
     public class Scrabble
     {
         private string _word;
+        private Dictionary<char, int> _alphabet;
         public Scrabble(string word)
         {
             _word = word;
-            
+            _alphabet = new Dictionary<char, int>
+            { 
+                {'A', 1}, {'E', 1}, {'I', 1}, {'O', 1}, {'U', 1},
+                {'L', 1}, {'N', 1}, {'R', 1}, {'S', 1}, {'T', 1},
+                {'D', 2}, {'G', 2}, {'B', 3}, {'C', 3}, {'M', 3},
+                {'P', 3}, {'F', 4}, {'H', 4}, {'V', 4}, {'W', 4},
+                {'Y', 4}, {'K', 5}, {'J', 8}, {'X', 8}, {'Q', 10}, {'Z', 10}
+            };
             //Hier wordt een woord in gedaan , hier komt dus informatie in 
             //TODO: do something with the word variable
             //some kind of dictionary that stores the letters
@@ -24,64 +32,32 @@ namespace csharp_scrabble_challenge.Main
             //move up the dicionary als private so it is being called in the constructor rather than the getletterscore method
 
         }
-        public int getLetterScore(Dictionary<char, int> dictionary, char key)
+        public int getLetterScore(char key)
         { 
-
-            foreach (var item in dictionary)
-            {
-                if (item.Key == key)
+                if (_alphabet.TryGetValue(Char.ToUpper(key), out int score))
                 {
-                    return item.Value;
-                }
-            }
 
-            return 0;
+                return score;
+
+                }
+                return 0;
             //zoek naar efficiente manieren om door de dictornary heen te gaan 
             //dictionary.trygetvalue();
-
-        }
+            }
 
         public int score()
         {
             //TODO: score calculation code goes
             //denk na over char en char arrays
             //Dictrionary die de letters en hun waarde daarvan opslaat.
-            Dictionary<char, int> alphabet = new Dictionary<char, int>();
-            alphabet.Add('A', 1);
-            alphabet.Add('E', 1);
-            alphabet.Add('I', 1);
-            alphabet.Add('O', 1);
-            alphabet.Add('U', 1);
-            alphabet.Add('L', 1);
-            alphabet.Add('N', 1);
-            alphabet.Add('R', 1);
-            alphabet.Add('S', 1);
-            alphabet.Add('T', 1);
-            alphabet.Add('D', 2);
-            alphabet.Add('G', 2);
-            alphabet.Add('B', 3);
-            alphabet.Add('C', 3);
-            alphabet.Add('M', 3);
-            alphabet.Add('P', 3);
-            alphabet.Add('F', 4);
-            alphabet.Add('H', 4);
-            alphabet.Add('V', 4);
-            alphabet.Add('W', 4);
-            alphabet.Add('Y', 4);
-            alphabet.Add('K', 5);
-            alphabet.Add('J', 8);
-            alphabet.Add('X', 8);
-            alphabet.Add('Q', 10);
-            alphabet.Add('Z', 10);
-
             int finalScore = 0;
 
             char[] chars = _word.ToCharArray();
             foreach (char c in chars)
-            {   
+            {
                 //finalScore+=getLetterScore(alphabet, Char.ToUpper(c));
                 //Console.WriteLine(c);
-                finalScore = finalScore + getLetterScore(alphabet, Char.ToUpper(c));
+                finalScore += getLetterScore(c);
             }
 
             //alfabet private member maken 
