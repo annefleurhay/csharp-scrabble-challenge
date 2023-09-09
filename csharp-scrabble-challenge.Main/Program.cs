@@ -14,7 +14,8 @@ dictionary.Add('w', 7);
 
 
 
-
+//initiate new scrabble
+Scrabble lotus = new Scrabble("lotus"); 
 
 
 foreach (char c in chars)

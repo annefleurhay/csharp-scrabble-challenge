@@ -16,22 +16,16 @@ namespace csharp_scrabble_challenge.Main
             _word = word;
             
             //Hier wordt een woord in gedaan , hier komt dus informatie in 
-            
-
             //TODO: do something with the word variable
             //some kind of dictionary that stores the letters
             //some kind of loop that runs through the word and look for the points given to that letter
             //uppercase or lowercase everything to make sure it works
             //this field needs to contain a private
-            //
-
             //move up the dicionary als private so it is being called in the constructor rather than the getletterscore method
 
-            
-           
         }
         public int getLetterScore(Dictionary<char, int> dictionary, char key)
-        {
+        { 
 
             foreach (var item in dictionary)
             {
@@ -50,12 +44,6 @@ namespace csharp_scrabble_challenge.Main
         public int score()
         {
             //TODO: score calculation code goes
-           
-            
-            // opslaan van de woord collectie
-
-           
-
             //denk na over char en char arrays
             //Dictrionary die de letters en hun waarde daarvan opslaat.
             Dictionary<char, int> alphabet = new Dictionary<char, int>();
